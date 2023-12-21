@@ -59,9 +59,9 @@ public class ATM {
 
     public  void authenticateUser(){
         int pin;
-        this.screen.displayMessage("Please enter your account number:");
+        this.screen.displayMessage("Please enter your account number: ");
         this.currentAccountNUmber = this.keypad.getInput();
-        this.screen.displayMessage("\nEnter your PIN:");
+        this.screen.displayMessage("Enter your PIN:");
         pin = this.keypad.getInput();
         this.screen.displayMessageLine("");
         this.userAuthenticated = this.database.authenticateUser(this.currentAccountNUmber,pin);

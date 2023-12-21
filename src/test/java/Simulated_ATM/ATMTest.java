@@ -105,8 +105,7 @@ public class ATMTest {
         atm.performTransactions();
         String expectedOutput = """
 Welcome!
-Please enter your account number: 
-Enter your PIN:
+Please enter your account number: Enter your PIN:
  
 ---Main menu---
 1 - View my balance
@@ -130,8 +129,7 @@ Thank you! Goodbye...!""";
         atm.performTransactions();
         String expectedOutput = """
                 Welcome!
-                Please enter your account number: 
-                Enter your PIN:
+                Please enter your account number: Enter your PIN:
                  
                 ---Main menu---
                 1 - View my balance
@@ -158,8 +156,7 @@ Thank you! Goodbye...!""";
         atm.performTransactions();
         String expectedOutput = """
                 Welcome!
-                Please enter your account number: 
-                Enter your PIN:
+                Please enter your account number: Enter your PIN:
                  
                 ---Main menu---
                 1 - View my balance
@@ -193,16 +190,13 @@ Thank you! Goodbye...!""";
         atm.performTransactions();
         String expectedOutput = """
                 Welcome!
-                Please enter your account number: 
-                Enter your PIN: 
+                Please enter your account number: Enter your PIN: 
                 Invalid account number or PIN. Please try again.
                 
-                Please enter your account number: 
-                Enter your PIN: 
+                Please enter your account number: Enter your PIN: 
                 Invalid account number or PIN. Please try again.
                 
-                Please enter your account number: 
-                Enter your PIN: 
+                Please enter your account number: Enter your PIN: 
                 
                 ---Main menu---
                 1 - View my balance
@@ -228,8 +222,7 @@ Thank you! Goodbye...!""";
         atm.performTransactions();
         String expectedOutput = """
                 Welcome!
-                Please enter your account number: 
-                Enter your PIN:
+                Please enter your account number: Enter your PIN:
                  
                 ---Main menu---
                 1 - View my balance
@@ -263,8 +256,7 @@ Thank you! Goodbye...!""";
         atm.performTransactions();
         String expectedOutput = """
                 Welcome!
-                Please enter your account number: 
-                Enter your PIN:
+                Please enter your account number: Enter your PIN:
                  
                 ---Main menu---
                 1 - View my balance
@@ -318,8 +310,7 @@ Thank you! Goodbye...!""";
         atm.performTransactions();
         String expectedOutput = """
                 Welcome!
-                Please enter your account number: 
-                Enter your PIN:
+                Please enter your account number: Enter your PIN:
                  
                 ---Main menu---
                 1 - View my balance
@@ -368,8 +359,7 @@ Thank you! Goodbye...!""";
         atm.performTransactions();
         String expectedOutput = """
                 Welcome!
-                Please enter your account number: 
-                Enter your PIN:
+                Please enter your account number: Enter your PIN:
                  
                 ---Main menu---
                 1 - View my balance
