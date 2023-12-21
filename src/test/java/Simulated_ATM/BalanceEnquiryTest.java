@@ -1,5 +1,6 @@
 package Simulated_ATM;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,11 +36,12 @@ public class BalanceEnquiryTest {
         BalanceInquiry balanceInquiry = new BalanceInquiry(123456789,screen,bankDataBase);
         balanceInquiry.execute();
         String expectedOutput = """
-                ---Balance information---\r
+                ---Balance information---
                 - Available balance: R100,00
                 - Total balance: R200,00
                 =============================""";
-        assertEquals(expectedOutput, mockOutputStream.toString().trim());
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(mockOutputStream.toString().trim(),"\r",""));
     }
 
 

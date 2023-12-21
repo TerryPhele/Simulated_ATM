@@ -12,7 +12,6 @@ public class BalanceInquiry extends  Transaction{
         double availableBalance = this.getBankDataBase().getAccount( this.getAccountNumber()).getAvailableBalance();
         double totalBalance = this.getBankDataBase().getAccount( this.getAccountNumber()).getTotalBalance();
 
-
         this.getScreen().displayMessageLine("---Balance information---");
         this.getScreen().displayMessage("- Available balance: ");
         this.getScreen().displayAmount(availableBalance);

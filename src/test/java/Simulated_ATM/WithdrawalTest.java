@@ -1,5 +1,6 @@
 package Simulated_ATM;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,10 +54,9 @@ public class WithdrawalTest {
                 4 - R100
                 5 - R200
                 6 - R1000000
-                7 - Cancel withdrawal
-                
-                Choose a withdrawal amount: """;
-        assertEquals(expectedOutput, mockOutputStream.toString().trim());
+                7 - Cancel withdrawal""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(mockOutputStream.toString().trim(),"\r",""));
 
     }
 

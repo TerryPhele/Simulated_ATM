@@ -36,7 +36,7 @@ public class Database {
     }
 
     public boolean authenticateUser( int accountNumber, int userPin){
-        return getAccount(accountNumber).validatePin(userPin);
+        return getAccount(accountNumber) != null && getAccount(accountNumber).validatePin(userPin);
     }
 
     public double getAvailableBalance( int accountNumber){

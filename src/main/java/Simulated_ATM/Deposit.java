@@ -19,11 +19,9 @@ public class Deposit  extends  Transaction{
         this.amount = promptForDeposition();
         if( amount != depositCancelled)
         {
-            this.getScreen().displayMessage("Please insert ");
-            this.getScreen().displayAmount( amount);
-            this.getScreen().displayMessageLine(" on the depositSlot.");
+            this.getScreen().displayMessage("\nPlease insert R"+ (int)amount + " on the depositSlot.\n" );
             this.getBankDataBase().getAccount( this.getAccountNumber()).credit( amount);
-            this.getScreen().displayMessageLine("\nYour money has been received.");
+            this.getScreen().displayMessageLine("\nYour money has been received.\n");
 
         }else{
             this.getScreen().displayMessageLine("\nCanceling transaction...");
@@ -32,7 +30,8 @@ public class Deposit  extends  Transaction{
 
     public  double promptForDeposition()
     {
-        this.getScreen().displayMessage("Enter the amount to deposit (or 0 to cancel): ");
+        this.getScreen().displayMessage("Enter the amount to deposit (or 0 to cancel):");
+        this.getScreen().displayMessageLine("");
         return (double) (this.keypad.getInput());
     }
 }

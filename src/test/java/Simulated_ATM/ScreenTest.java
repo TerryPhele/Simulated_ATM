@@ -28,7 +28,7 @@ public class ScreenTest {
         Screen screen = new Screen();
         screen.displayMessageLine("Welcome,");
         screen.displayMessageLine("To our atm.");
-        String ExpectedOutput = "Welcome," +"\r\n"+
+        String ExpectedOutput = "Welcome,\r\n" +
                 "To our atm.";
 
         assertEquals(ExpectedOutput, mockOutputStream.toString().trim());

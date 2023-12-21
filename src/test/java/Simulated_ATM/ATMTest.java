@@ -1,5 +1,6 @@
 package Simulated_ATM;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,7 +48,10 @@ public class ATMTest {
         ATM atm = new ATM( inputStream, database);
         atm.authenticateUser();
         assertFalse(atm.getUserAuthenticated());
+
         inputStream = new ByteArrayInputStream("123456789\n1234".getBytes());
+        atm = new ATM( inputStream, database);
+        atm.authenticateUser();
         assertTrue(atm.getUserAuthenticated());
     }
 
@@ -58,7 +62,6 @@ public class ATMTest {
         ATM atm = new ATM( inputStream, database);
          int userChoices = atm.displayMainMenu();
         String expectedOutput = """
-                
                 ---Main menu---
                 1 - View my balance
                 2 - Withdraw cash
@@ -66,7 +69,7 @@ public class ATMTest {
                 4  - Exit
                 
                 Enter a choice: """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
+        assertEquals(expectedOutput, outputStream.toString().trim());
         assertEquals(1, userChoices);
 
     }
@@ -74,7 +77,7 @@ public class ATMTest {
     @Test
     public void shouldCreateTransaction()
     {
-        ATM atm = new ATM( inputStream, database);
+        ATM atm = new ATM();
         Transaction currentTransaction = atm.createTransaction(1);
         assertTrue( currentTransaction instanceof BalanceInquiry);
 
@@ -101,25 +104,22 @@ public class ATMTest {
         ATM atm = new ATM( inputStream, database);
         atm.performTransactions();
         String expectedOutput = """
-                
-                Welcome!
-                
-                Please enter your account number: 
-                Enter your PIN:
-                 
-                ---Main menu---
-                1 - View my balance
-                2 - Withdraw cash
-                3 - Deposit funds
-                4  - Exit
-                
-                Enter a choice: 
-                
-                Exiting the system...
-                
-                Thank you! Goodbye!
-                """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
+Welcome!
+Please enter your account number: 
+Enter your PIN:
+ 
+---Main menu---
+1 - View my balance
+2 - Withdraw cash
+3 - Deposit funds
+4  - Exit
+
+Enter a choice: 
+
+Exiting the system...
+Thank you! Goodbye...!""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(outputStream.toString().trim(),"\r",""));
     }
 
     @Test
@@ -129,9 +129,7 @@ public class ATMTest {
         ATM atm = new ATM( inputStream, database);
         atm.performTransactions();
         String expectedOutput = """
-                
                 Welcome!
-                
                 Please enter your account number: 
                 Enter your PIN:
                  
@@ -142,15 +140,13 @@ public class ATMTest {
                 4  - Exit
                 
                 Enter a choice: 
-                
                 ---Balance information---
-                - Available balance: R100.00
-                - Total balance: R100.00
+                - Available balance: R100,00
+                - Total balance: R100,00
                 =============================
-                
-                Thank you! Goodbye!
-                """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
+                Thank you! Goodbye...!""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(outputStream.toString().trim(),"\r",""));
     }
 
     @Test
@@ -161,9 +157,7 @@ public class ATMTest {
         ATM atm = new ATM( inputStream, database);
         atm.performTransactions();
         String expectedOutput = """
-                
                 Welcome!
-                
                 Please enter your account number: 
                 Enter your PIN:
                  
@@ -174,7 +168,6 @@ public class ATMTest {
                 4  - Exit
                 
                 Enter a choice: 
-                
                 You did not enter a valid selection. Try again.
                 
                 ---Main menu---
@@ -184,15 +177,13 @@ public class ATMTest {
                 4  - Exit
                 
                 Enter a choice: 
-                
                 ---Balance information---
-                - Available balance: R100.00
-                - Total balance: R100.00
+                - Available balance: R100,00
+                - Total balance: R100,00
                 =============================
-                
-                Thank you! Goodbye!
-                """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
+                Thank you! Goodbye...!""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(outputStream.toString().trim(),"\r",""));
     }
 
     @Test
@@ -201,9 +192,7 @@ public class ATMTest {
         ATM atm = new ATM(inputStream, database);
         atm.performTransactions();
         String expectedOutput = """
-                                
                 Welcome!
-                                
                 Please enter your account number: 
                 Enter your PIN: 
                 Invalid account number or PIN. Please try again.
@@ -222,15 +211,13 @@ public class ATMTest {
                 4  - Exit
                                 
                 Enter a choice: 
-                                
                 ---Balance information---
-                - Available balance: R100.00
-                - Total balance: R100.00
+                - Available balance: R100,00
+                - Total balance: R100,00
                 =============================
-                                
-                Thank you! Goodbye!
-                """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
+                Thank you! Goodbye...!""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(outputStream.toString().trim(),"\r",""));
     }
 
     @Test
@@ -240,9 +227,7 @@ public class ATMTest {
         ATM atm = new ATM( inputStream, database);
         atm.performTransactions();
         String expectedOutput = """
-                
                 Welcome!
-                
                 Please enter your account number: 
                 Enter your PIN:
                  
@@ -253,7 +238,6 @@ public class ATMTest {
                 4  - Exit
                 
                 Enter a choice: 
-                
                 ---Withdrawal Menu---
                 1 - R20
                 2 - R40
@@ -267,10 +251,9 @@ public class ATMTest {
                 
                 Your cash has been dispensed. Please take your cash now.
                 
-                Thank you! Goodbye!
-                """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
-    }
+                Thank you! Goodbye...!""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(outputStream.toString().trim(),"\r",""));    }
 
     @Test
     public void runWithUserChooseWithdrawalInsufficientCashInAccount()
@@ -279,9 +262,7 @@ public class ATMTest {
         ATM atm = new ATM( inputStream, database);
         atm.performTransactions();
         String expectedOutput = """
-                
                 Welcome!
-                
                 Please enter your account number: 
                 Enter your PIN:
                  
@@ -292,7 +273,6 @@ public class ATMTest {
                 4  - Exit
                 
                 Enter a choice: 
-                
                 ---Withdrawal Menu---
                 1 - R20
                 2 - R40
@@ -308,7 +288,7 @@ public class ATMTest {
                 
                 Please choose a small amount.
                 
-                 ---Withdrawal Menu---
+                ---Withdrawal Menu---
                 1 - R20
                 2 - R40
                 3 - R60
@@ -321,16 +301,15 @@ public class ATMTest {
                 
                 Your cash has been dispensed. Please take your cash now.
                 
-                Thank you! Goodbye!
-                """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
-    }
+                Thank you! Goodbye...!""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(outputStream.toString().trim(),"\r",""));    }
 
     @Test
     public void runWithUserChooseWithdrawalInsufficientCashInATM()
     {
         List< Account> accounts =  List.of(new Account(123456789, 1234,
-                200000, 2000000));
+                2000000, 2000000));
         inputStream = new ByteArrayInputStream("123456789\n1234\n2\n6\n4\n".getBytes());
 
         database = new Database( accounts);
@@ -338,9 +317,7 @@ public class ATMTest {
         ATM atm = new ATM( inputStream, database);
         atm.performTransactions();
         String expectedOutput = """
-                
                 Welcome!
-                
                 Please enter your account number: 
                 Enter your PIN:
                  
@@ -351,7 +328,6 @@ public class ATMTest {
                 4  - Exit
                 
                 Enter a choice: 
-                
                 ---Withdrawal Menu---
                 1 - R20
                 2 - R40
@@ -367,7 +343,7 @@ public class ATMTest {
                 
                 Please choose a small amount.
                 
-                 ---Withdrawal Menu---
+                ---Withdrawal Menu---
                 1 - R20
                 2 - R40
                 3 - R60
@@ -380,21 +356,18 @@ public class ATMTest {
                 
                 Your cash has been dispensed. Please take your cash now.
                 
-                Thank you! Goodbye!
-                """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
-    }
+                Thank you! Goodbye...!""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(outputStream.toString().trim(),"\r",""));    }
 
     @Test
     public void runWithUserChooseDepositeCorrectInputs()
     {
-        inputStream = new ByteArrayInputStream("123456789\n1234\n2\n100".getBytes());
+        inputStream = new ByteArrayInputStream("123456789\n1234\n3\n100".getBytes());
         ATM atm = new ATM( inputStream, database);
         atm.performTransactions();
         String expectedOutput = """
-                
                 Welcome!
-                
                 Please enter your account number: 
                 Enter your PIN:
                  
@@ -405,15 +378,13 @@ public class ATMTest {
                 4  - Exit
                 
                 Enter a choice: 
-                
                 Enter the amount to deposit (or 0 to cancel): 
                 
                 Please insert R100 on the depositSlot.
                 
                 Your money has been received.
                 
-                Thank you! Goodbye!
-                """;
-        assertEquals(expectedOutput, inputStream.toString().trim());
-    }
+                Thank you! Goodbye...!""";
+        assertEquals(StringUtils.replace(expectedOutput,"\r",""),
+                StringUtils.replace(outputStream.toString().trim(),"\r",""));    }
 }

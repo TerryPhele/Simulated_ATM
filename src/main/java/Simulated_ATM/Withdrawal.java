@@ -29,9 +29,9 @@ public class Withdrawal extends Transaction {
         do {
             displayMenuOfAmounts();
             int amountToWithdraw;
-            this.getScreen().displayMessage("Choose a withdrawal amount: ");
+            this.getScreen().displayMessage("Choose a withdrawal amount:");
             amountToWithdraw = this.getChosenAmountToWithDraw();
-
+            this.getScreen().displayMessageLine("");
             if( amountToWithdraw != WITHDRAWALCANCELLED)
             {
                 if( amountToWithdraw <= amountAvailableInAccount)
@@ -41,15 +41,16 @@ public class Withdrawal extends Transaction {
                         this.getBankDataBase().debit(this.getAccountNumber(), amountToWithdraw);
                         this.cashDispenser.dispenseCash(amountToWithdraw);
                         withdrawalSuccess = true;
+                        this.getScreen().displayMessageLine("\nYour cash has been dispensed. Please take your cash now.\n");
 
                     }else{
-                        this.getScreen().displayMessageLine("Insufficient funds in your account.\n");
-                        this.getScreen().displayMessageLine("Please choose a small amount.");
+                        this.getScreen().displayMessageLine("\nInsufficient cash available in ATM.\n");
+                        this.getScreen().displayMessageLine("Please choose a small amount.\n");
                     }
 
                 }else {
-                    this.getScreen().displayMessageLine("Insufficient cash available in ATM.\n");
-                    this.getScreen().displayMessageLine("Please choose a small amount.");
+                    this.getScreen().displayMessageLine("\nInsufficient funds in your account.\n");
+                    this.getScreen().displayMessageLine("Please choose a small amount.\n");
                 }
 
             }else{
@@ -65,7 +66,7 @@ public class Withdrawal extends Transaction {
     public  void displayMenuOfAmounts()
     {
         this.getScreen().displayMessageLine("""
-                ---Withdrawal Menu---\r
+                ---Withdrawal Menu---
                 1 - R20
                 2 - R40
                 3 - R60
@@ -73,8 +74,7 @@ public class Withdrawal extends Transaction {
                 5 - R200
                 6 - R1000000
                 7 - Cancel withdrawal
-                
-                Choose a withdrawal amount: """);
+                """);
     }
 
     public int getChosenAmountToWithDraw()
